@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   const [address, setAddress] = useState<string>("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showQrisModal, setShowQrisModal] = useState(false);
 
   useEffect(() => {
     // Redirect back to cart if empty
@@ -41,14 +42,13 @@ export default function CheckoutPage() {
   const isValid = () => {
     if (orderType === "DINE_IN") {
       const num = parseInt(tableNumber);
-      return !isNaN(num) && num >= 1 && num <= 20;
+      return !isNaN(num) && num >= 1 && num <= 100;
     } else {
-      return address.trim().length > 5;
+      return address.trim().length >= 3;
     }
   };
 
-  const handlePayment = async () => {
-    if (!isValid()) return;
+  const processOrder = async () => {
     if (!session?.user) {
       alert("Sesi tidak valid. Silakan login kembali.");
       return;
@@ -63,12 +63,23 @@ export default function CheckoutPage() {
       if (res.success) {
         clearCart();
         setIsSuccess(true);
+        setShowQrisModal(false);
       }
     } catch (error) {
       console.error(error);
       alert("Gagal memproses pesanan.");
     } finally {
       setIsProcessing(false);
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!isValid()) return;
+    
+    if (paymentMethod === "QRIS") {
+      setShowQrisModal(true);
+    } else {
+      await processOrder();
     }
   };
 
@@ -211,17 +222,6 @@ export default function CheckoutPage() {
                     <div className="text-sm text-muted-foreground">Gopay, OVO, Dana, LinkAja, ShopeePay.</div>
                   </div>
                 </label>
-
-                <label className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-colors ${paymentMethod === 'BANK' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'}`}>
-                  <input type="radio" name="payment" value="BANK" checked={paymentMethod === 'BANK'} onChange={() => setPaymentMethod('BANK')} className="w-5 h-5 text-primary focus:ring-primary accent-primary" />
-                  <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center shrink-0">
-                    <Building className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-lg">Transfer Bank (Virtual Account)</div>
-                    <div className="text-sm text-muted-foreground">BCA, Mandiri, BNI, BRI.</div>
-                  </div>
-                </label>
               </div>
             </div>
           </div>
@@ -276,6 +276,43 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
+
+      {/* QRIS Modal */}
+      {showQrisModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl relative">
+            <button 
+              onClick={() => setShowQrisModal(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+            >
+              ✕
+            </button>
+            <h3 className="text-2xl font-black mb-2 uppercase">Scan QRIS</h3>
+            <p className="text-muted-foreground mb-6 text-sm font-medium">Silakan scan kode QR di bawah ini menggunakan aplikasi e-wallet Anda.</p>
+            
+            <div className="bg-white p-4 rounded-2xl border-4 border-dashed border-primary/20 mb-6 mx-auto w-64 h-64 flex items-center justify-center">
+              {/* Fake QRIS Image */}
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" 
+                alt="QRIS Abal-Abal" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <div className="text-3xl font-black text-primary mb-6">
+              Rp {totalPrice.toLocaleString("id-ID")}
+            </div>
+
+            <button 
+              onClick={processOrder}
+              disabled={isProcessing}
+              className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-black uppercase tracking-wide hover:bg-primary/90 transition-all shadow-lg disabled:opacity-50"
+            >
+              {isProcessing ? "Memproses..." : "Saya Sudah Bayar"}
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
