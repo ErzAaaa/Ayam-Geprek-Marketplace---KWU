@@ -10,8 +10,9 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-border/40 shadow-sm">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-3xl font-black tracking-tighter text-primary italic">
-            AG<span className="text-foreground text-xl not-italic ml-1 font-bold">JAGONYA AYAM</span>
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/images/logo.png" alt="Logo Usaha" className="h-10 w-auto" />
+            <span className="text-foreground text-xl font-bold tracking-tight">JAGOAN RAKYAT</span>
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-8 font-black uppercase tracking-wide text-sm text-foreground">

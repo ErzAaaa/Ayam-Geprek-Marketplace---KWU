@@ -5,10 +5,10 @@ import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 
 const PROMO_PRODUCTS = [
-  { id: "3", name: "Menu Rakyat 3", description: "3 Pcs Chicken + 2 Pcs Rice + 2 Drink", price: 40000, originalPrice: 50000, imageUrl: null },
-  { id: "6", name: "Promo Rakyat Berdua", description: "2 Pcs Chicken + 2 Pcs Rice + 2 Es Teh", price: 30000, originalPrice: 45000, imageUrl: null },
-  { id: "7", name: "Super Besar 1", description: "1 Pcs Chicken + 1 Rice + Cola", price: 20000, originalPrice: 28000, imageUrl: null },
-  { id: "8", name: "Family Bucket", description: "9 Pcs Chicken", price: 99000, originalPrice: 120000, imageUrl: null },
+  { id: "3", name: "Menu Rakyat 3", description: "3 Pcs Chicken + 2 Pcs Rice + 2 Drink", price: 40000, originalPrice: 50000, imageUrl: "/images/menu-rakyat-3.jpg" },
+  { id: "6", name: "Promo Rakyat Berdua", description: "2 Pcs Chicken + 2 Pcs Rice + 2 Es Teh", price: 30000, originalPrice: 45000, imageUrl: "/images/promo-rakyat-berdua.jpg" },
+  { id: "7", name: "Super Besar 1", description: "1 Pcs Chicken + 1 Rice + Cola", price: 20000, originalPrice: 28000, imageUrl: "/images/super-besar-1.jpg" },
+  { id: "8", name: "Family Bucket", description: "9 Pcs Chicken", price: 99000, originalPrice: 120000, imageUrl: "/images/family-bucket.jpg" },
 ];
 
 export default function PromoPage() {

@@ -66,10 +66,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                   <div className="relative z-10 text-center">
                     <div className="w-48 h-48 mx-auto bg-primary rounded-full blur-[80px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
-                    <Flame className="w-32 h-32 text-orange-500 mx-auto mb-6 relative z-10 drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]" />
-                    <h3 className="text-4xl font-black text-white relative z-10 uppercase tracking-widest">
-                      Spicy &<br/>Crunchy
-                    </h3>
+                    <img src="/images/logo.png" alt="Logo" className="w-64 h-64 mx-auto relative z-10 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
                   </div>
                </div>
              </div>

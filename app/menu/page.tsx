@@ -8,16 +8,16 @@ import { ProductCard } from "@/components/ProductCard";
 const CATEGORIES = ["PROMOTION", "PAKET RAKYAT", "CHICKEN", "DRINKS"];
 
 const MOCK_PRODUCTS = [
-  { id: "1", category: "PAKET RAKYAT", name: "Menu Rakyat 1", description: "1 Pcs Chicken + 1 Pcs Rice", price: 15000, imageUrl: null },
-  { id: "2", category: "PAKET RAKYAT", name: "Menu Rakyat 2", description: "2 Pcs Chicken + 1 Pcs Rice + 1 Drink", price: 25000, imageUrl: null },
-  { id: "3", category: "PAKET RAKYAT", name: "Menu Rakyat 3", description: "3 Pcs Chicken + 2 Pcs Rice + 2 Drink", price: 40000, originalPrice: 50000, imageUrl: null },
-  { id: "4", category: "DRINKS", name: "Air Mineral", description: "Air mineral botol 600ml", price: 5000, imageUrl: null },
-  { id: "5", category: "DRINKS", name: "Es Teh Manis", description: "Es teh manis segar", price: 6000, imageUrl: null },
-  { id: "6", category: "PROMOTION", name: "Promo Rakyat Berdua", description: "2 Pcs Chicken + 2 Pcs Rice + 2 Es Teh", price: 30000, originalPrice: 45000, imageUrl: null },
-  { id: "7", category: "CHICKEN", name: "Ayam Geprek Dada", description: "1 Pcs Dada Ayam Geprek", price: 12000, imageUrl: null },
-  { id: "8", category: "CHICKEN", name: "Ayam Geprek Paha Atas", description: "1 Pcs Paha Atas Ayam Geprek", price: 12000, imageUrl: null },
-  { id: "9", category: "CHICKEN", name: "Ayam Geprek Paha Bawah", description: "1 Pcs Paha Bawah Ayam Geprek", price: 10000, imageUrl: null },
-  { id: "10", category: "CHICKEN", name: "Ayam Geprek Sayap", description: "1 Pcs Sayap Ayam Geprek", price: 10000, imageUrl: null },
+  { id: "1", category: "PAKET RAKYAT", name: "Menu Rakyat 1", description: "1 Pcs Chicken + 1 Pcs Rice", price: 15000, imageUrl: "/images/menu-rakyat-1.jpg" },
+  { id: "2", category: "PAKET RAKYAT", name: "Menu Rakyat 2", description: "2 Pcs Chicken + 1 Pcs Rice + 1 Drink", price: 25000, imageUrl: "/images/menu-rakyat-2.jpg" },
+  { id: "3", category: "PAKET RAKYAT", name: "Menu Rakyat 3", description: "3 Pcs Chicken + 2 Pcs Rice + 2 Drink", price: 40000, originalPrice: 50000, imageUrl: "/images/menu-rakyat-3.jpg" },
+  { id: "4", category: "DRINKS", name: "Air Mineral", description: "Air mineral botol 600ml", price: 5000, imageUrl: "/images/air-mineral.jpg" },
+  { id: "5", category: "DRINKS", name: "Es Teh Manis", description: "Es teh manis segar", price: 6000, imageUrl: "/images/es-teh-manis.jpg" },
+  { id: "6", category: "PROMOTION", name: "Promo Rakyat Berdua", description: "2 Pcs Chicken + 2 Pcs Rice + 2 Es Teh", price: 30000, originalPrice: 45000, imageUrl: "/images/promo-rakyat-berdua.jpg" },
+  { id: "7", category: "CHICKEN", name: "Ayam Geprek Dada", description: "1 Pcs Dada Ayam Geprek", price: 12000, imageUrl: "/images/ayam-geprek-dada.jpg" },
+  { id: "8", category: "CHICKEN", name: "Ayam Geprek Paha Atas", description: "1 Pcs Paha Atas Ayam Geprek", price: 12000, imageUrl: "/images/ayam-geprek-paha-atas.jpg" },
+  { id: "9", category: "CHICKEN", name: "Ayam Geprek Paha Bawah", description: "1 Pcs Paha Bawah Ayam Geprek", price: 10000, imageUrl: "/images/ayam-geprek-paha-bawah.jpg" },
+  { id: "10", category: "CHICKEN", name: "Ayam Geprek Sayap", description: "1 Pcs Sayap Ayam Geprek", price: 10000, imageUrl: "/images/ayam-geprek-sayap.jpg" },
 ];
 
 export default function MenuPage() {
