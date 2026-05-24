@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${inter.className} antialiased selection:bg-primary selection:text-primary-foreground`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
