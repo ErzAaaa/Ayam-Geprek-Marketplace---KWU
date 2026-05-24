@@ -57,8 +57,13 @@ export default async function AdminOrdersPage() {
                   <tr key={order.id} className="hover:bg-zinc-50/50 transition-colors">
                     <td className="px-6 py-4">
                       <p className="font-bold text-zinc-800">{order.User.name}</p>
-                      <p className="text-sm text-zinc-500">{order.User.email}</p>
-                      <p className="text-xs text-zinc-400 mt-1">{new Date(order.createdAt).toLocaleString("id-ID")}</p>
+                      <p className="text-sm text-zinc-500 mb-2">{order.User.email}</p>
+                      {order.OrderItem[0]?.notes && (
+                        <p className="text-xs font-medium text-primary bg-primary/10 inline-block px-2 py-1 rounded">
+                          {order.OrderItem[0].notes}
+                        </p>
+                      )}
+                      <p className="text-xs text-zinc-400 mt-2">{new Date(order.createdAt).toLocaleString("id-ID")}</p>
                     </td>
                     <td className="px-6 py-4">
                       <ul className="text-sm font-medium text-zinc-700">
