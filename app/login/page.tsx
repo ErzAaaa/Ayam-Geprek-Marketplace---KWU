@@ -18,7 +18,6 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate role check for presentation (in real app, NextAuth callback handles this)
     const res = await signIn("credentials", {
       email,
       password,
@@ -29,8 +28,16 @@ export default function LoginPage() {
       alert("Login gagal, periksa kredensial Anda.");
       setLoading(false);
     } else {
-      alert("Login berhasil! Sistem akan mendeteksi peran (Buyer/Vendor) secara otomatis.");
-      router.push("/");
+      // Fetch session manually to determine role
+      const sessionRes = await fetch("/api/auth/session");
+      const session = await sessionRes.json();
+      
+      if (session?.user?.role === "VENDOR" || session?.user?.role === "ADMIN") {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
+      router.refresh();
     }
   };
 

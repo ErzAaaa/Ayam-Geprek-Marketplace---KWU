@@ -8,6 +8,7 @@ import { useCart } from "@/lib/CartContext";
 import { CheckCircle2, Wallet, QrCode, Building, ArrowLeft, UserX, Utensils, Truck } from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { createOrder } from "@/app/actions/checkout";
 
 export default function CheckoutPage() {
   const { data: session, status } = useSession();
@@ -46,16 +47,29 @@ export default function CheckoutPage() {
     }
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     if (!isValid()) return;
-    
+    if (!session?.user) {
+      alert("Sesi tidak valid. Silakan login kembali.");
+      return;
+    }
+
     setIsProcessing(true);
-    // Simulate API call delay
-    setTimeout(() => {
+    
+    try {
+      const destination = orderType === "DINE_IN" ? `Meja ${tableNumber}` : address;
+      const res = await createOrder((session.user as any).id, items, orderType, destination);
+      
+      if (res.success) {
+        clearCart();
+        setIsSuccess(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Gagal memproses pesanan.");
+    } finally {
       setIsProcessing(false);
-      setIsSuccess(true);
-      clearCart();
-    }, 1500);
+    }
   };
 
   if (status === "loading") {
