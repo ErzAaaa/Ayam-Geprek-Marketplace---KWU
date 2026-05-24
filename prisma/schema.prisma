@@ -1,0 +1,73 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Order {
+  id              String        @id
+  userId          String
+  vendorProfileId String
+  status          String        @default("PENDING_PAYMENT")
+  totalAmount     Float
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime
+  VendorProfile   VendorProfile @relation(fields: [vendorProfileId], references: [id])
+  User            User          @relation(fields: [userId], references: [id])
+  OrderItem       OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  notes     String?
+  Product   Product @relation(fields: [productId], references: [id])
+  Order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id              String        @id
+  vendorProfileId String
+  name            String
+  description     String?
+  price           Float
+  imageUrl        String?
+  isAvailable     Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime
+  OrderItem       OrderItem[]
+  VendorProfile   VendorProfile @relation(fields: [vendorProfileId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String         @id
+  name          String?
+  email         String         @unique
+  password      String
+  role          String         @default("BUYER")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime
+  Order         Order[]
+  VendorProfile VendorProfile?
+}
+
+model VendorProfile {
+  id          String    @id
+  userId      String    @unique
+  shopName    String
+  description String?
+  latitude    Float?
+  longitude   Float?
+  isOpen      Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  Order       Order[]
+  Product     Product[]
+  User        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
