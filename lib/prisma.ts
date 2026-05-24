@@ -7,6 +7,7 @@ if (!process.env.DATABASE_URL) {
 
 const config = {
   url: process.env.DATABASE_URL,
+  ...(process.env.TURSO_AUTH_TOKEN ? { authToken: process.env.TURSO_AUTH_TOKEN } : {}),
 };
 
 const adapter = new PrismaLibSql(config);
